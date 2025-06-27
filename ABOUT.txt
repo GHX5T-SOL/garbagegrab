@@ -1,0 +1,49 @@
+Introducing Garbage Grab!
+
+Step into the neon-drenched, dystopian future of Garbage Grab, 
+where humanity has achieved interstellar travel, bridging worlds and cultures. 
+As humans explore distant planets, alien species, including the Glub, seek refuge on Earth after their homeworld’s destruction. 
+With their eerie, demon-like appearance, the Glub are shunned by society and relegated to the fringes—namely, humanity’s sprawling, high-tech garbage dumps. 
+These automated sorting facilities recycle or destroy waste, but amidst the chaos, valuable discarded tech often slips through.
+
+Enter the Garbage Grabbers, daring pilots who navigate these hazardous zones in advanced mech suits, scavenging high-value items before they’re lost forever. 
+They face fierce competition from rival Grabbers and the territorial Glub, who roam the dumps, resentful of intruders. 
+
+In a world where humanity generates more waste than ever, "grabbing" has become a lucrative, high-stakes profession.
+
+Game Overview
+
+Garbage Grab is a thrilling 3D multiplayer game set in a gritty cyberpunk arena—a high-tech garbage dump shrouded in fog, dotted with junk piles and spike traps. 
+Players control customizable mechs, battling AI opponents and evading a menacing Glub monster, 
+all while collecting valuable loot: Gold Coins (10 points), Blue USB Sticks (25 points), and Silver Laptops (50 points). The objective is simple yet intense: achieve the highest score within a 5-minute timer, dodging hazards and outsmarting rivals to claim victory. The game features a dynamic HUD displaying health, timer, score, and a leaderboard, with immersive audio (cyberpunk music and sound effects) and visual effects (bloom, vignette, particles, screen shake).
+
+Gameplay and Controls
+Playable on Desktop and Mobile: Enjoy seamless gameplay across platforms.
+Desktop: Use W, A, S, D keys for movement and rotation (tank-style), with the Space bar to jump.
+
+Mobile: A virtual joystick provides fluid 360-degree movement, automatically adjusting the mech’s direction.
+
+Characters: Pilot your unique Mech-D5Ww2Jdo42, compete against AI TrashBots (TrashBot_1 and TrashBot_2), or other players, 
+and avoid the Glub Evolved monster, which chases and damages players within its radius.
+
+Arena: Navigate a grid-based floor with fog, junk piles as obstacles, and spike traps that deal damage on contact.
+
+Goals: Collect the most points by grabbing loot, survive the 5-minute round (or until health depletes), and aim for the top spot on the leaderboard.
+
+Blockchain and Gorbagana Chain Integration
+
+Garbage Grab is powered by the innovative Gorbagana Chain, a fast, Solana-based experimental testnet designed for seamless blockchain integration. 
+The game includes placeholders for future blockchain features, such as a "Connect Wallet" button that simulates wallet connection (logging "Wallet connected" and updating the player name to "Ghxst.eth" on the leaderboard). 
+
+The Gorbagana Chain enables a competitive edge with an on-chain leaderboard, where scores are recorded using native test tokens ($gGOR). Top players can earn $gGOR prizes, fostering a vibrant, decentralized gaming ecosystem. 
+
+This integration is still in development, with plans to fully support Backpack wallet and enhance multiplayer functionality on the testnet and mainnet when live.
+
+Development and Accessibility
+
+Built using a modern, buildless JavaScript stack—Three.js for 3D rendering, React Three Fiber and Drei for React integration, React Three Rapier for physics, Zustand for state management, 
+and Howler.js for audio—Garbage Grab is designed for simplicity and performance. 
+The code is hosted on this GitHub repository, exported from Rosebud AI, and includes all assets (3D models, textures, audio) in a downloadable zip.
+
+Whether you’re a developer looking to contribute or a player eager to explore, the game is open for testing and improvement.
+Join the Garbage Grab community, scavenge the dumps, and rise to the top—playable now on desktop and mobile, with a future powered by Gorbagana Blockchain!
