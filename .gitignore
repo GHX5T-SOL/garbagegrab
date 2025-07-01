@@ -1,0 +1,12 @@
+# Exclude node_modules in both subfolders
+garbagegrab/node_modules/
+garbagegrab-program/node_modules/
+
+# Exclude .env files
+garbagegrab/.env
+garbagegrab-program/.env
+
+# Other common exclusions
+*.log
+.DS_Store
+.env 
