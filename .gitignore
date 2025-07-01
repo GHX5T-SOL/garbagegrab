@@ -10,3 +10,4 @@ garbagegrab-program/.env
 *.log
 .DS_Store
 .env 
+.parcel-cache/
