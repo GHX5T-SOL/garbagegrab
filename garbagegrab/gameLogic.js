@@ -1,10 +1,11 @@
+require('dotenv').config();
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { Connection, PublicKey, Transaction, TransactionInstruction, SystemProgram } from '@solana/web3.js';
 
 // Gorbagana Testnet configuration
 const PROGRAM_ID = new PublicKey('6t7gLJEudrC9JNw8ZXSnnwyMgmofdGxtQVQErA67nxhN');
-const connection = new Connection('https://rpc.gorbagana.wtf', 'confirmed');
+const connection = new Connection(process.env.RPC_URL || 'https://rpc.gorbagana.wtf', 'confirmed');
 
 export class GameLogic {
   constructor(scene, player, sceneManager, camera, wallet) {
@@ -132,7 +133,7 @@ export class GameLogic {
         playerPublicKey: this.wallet.publicKey.toBase58()
       };
       console.log('Sending /collect-item request:', requestBody);
-      const response = await fetch('http://localhost:3000/collect-item', {
+      const response = await fetch(`${process.env.API_URL}/collect-item`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody)
