@@ -5,12 +5,22 @@ const { Connection, Keypair, PublicKey, SystemProgram, Transaction, TransactionI
 const bs58 = require('bs58');
 
 const app = express();
-const PORT = 3000;
-const RPC_URL = 'https://rpc.gorbagana.wtf';
 const PROGRAM_ID = new PublicKey('6t7gLJEudrC9JNw8ZXSnnwyMgmofdGxtQVQErA67nxhN');
 
-// Fix CORS: Allow requests from 'http://localhost:1234' (no trailing slash)
-app.use(cors({ origin: 'https://garbagegrab.vercel.app' }));
+// CORS: Allow requests from the client-side deployment and local development
+const allowedOrigins = [
+  'https://garbagegrab-game.vercel.app',
+  'http://localhost:1234'
+];
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
 app.use(express.json());
 
 // Optional: Log response headers to verify CORS settings
@@ -33,7 +43,7 @@ async function loadPayerKeypair() {
   console.log('Payer Public Key:', payer.publicKey.toBase58());
 
   // Check payer balance on startup
-  const connection = new Connection(RPC_URL, 'confirmed');
+  const connection = new Connection(process.env.RPC_URL || 'https://rpc.gorbagana.wtf', 'confirmed');
   const balance = await connection.getBalance(payer.publicKey);
   console.log('Payer Balance:', balance / 1e9, 'SOL');
   if (balance < 10000000) { // 0.01 SOL for safety
@@ -58,7 +68,7 @@ app.post('/collect-item', async (req, res) => {
       console.warn('[collect-item] Missing fields, proceeding with defaults:', req.body);
       return res.status(400).json({ error: 'Missing required fields' });
     }
-    const connection = new Connection(RPC_URL, 'confirmed');
+    const connection = new Connection(process.env.RPC_URL || 'https://rpc.gorbagana.wtf', 'confirmed');
     const playerPubkey = new PublicKey(playerPublicKey);
     const scoreAccount = new PublicKey(scoreAccountAddress);
     const pda = await getScoreAccountPDA(playerPublicKey);
@@ -125,10 +135,12 @@ app.post('/collect-item', async (req, res) => {
   }
 });
 
+// Initialize payer and export for Vercel serverless
 loadPayerKeypair().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-  });
+  console.log('Payer initialized, ready to handle requests');
 }).catch(error => {
-  console.error('Server failed to start:', error.message || error);
+  console.error('Failed to initialize payer:', error.message || error);
 });
+
+// Export for Vercel serverless functions
+module.exports = app;
