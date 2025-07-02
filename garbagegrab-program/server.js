@@ -10,7 +10,7 @@ const RPC_URL = 'https://rpc.gorbagana.wtf';
 const PROGRAM_ID = new PublicKey('6t7gLJEudrC9JNw8ZXSnnwyMgmofdGxtQVQErA67nxhN');
 
 // Fix CORS: Allow requests from 'http://localhost:1234' (no trailing slash)
-app.use(cors({ origin: 'http://localhost:1234' }));
+app.use(cors({ origin: 'https://garbagegrab.vercel.app' }));
 app.use(express.json());
 
 // Optional: Log response headers to verify CORS settings
