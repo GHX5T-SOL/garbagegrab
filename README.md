@@ -1,167 +1,229 @@
-# Garbagegrab
-Gorbagana Blockchain Game
-
-# Garbage Grab
-
-Built by Ghxst 
-
-## Introduction
-
-Welcome to **Garbage Grab**, a fast-paced 3D multiplayer mini-game for desktop and mobile built to showcase the technical capabilities of the **Gorbagana Blockchain**, a Solana-based experimental testnet designed for gaming and community-driven experiments. Developed under a tight deadline for a friendly competition, this prototype demonstrates on-chain multiplayer mechanics with significant potential for future enhancements. This README provides everything you need to set up, run, and understand the game, including its blockchain integration with Program Derived Addresses (PDAs) and plans for improvement.
-
----
-
-## Background Story
-
-In a neon-drenched, dystopian future, humanity’s relentless consumption has overwhelmed Earth, leading to the creation of **Garbage World**—a massive asteroid repurposed as a cosmic landfill for discarded tech and refuse. Amid the chaos, rare and valuable technologies lie buried in the heaps, waiting to be reclaimed.
-
-You are a **Garbage Grabber**, a fearless pilot commanding a cutting-edge mech suit, diving into this hazardous terrain to salvage high-value items before they’re lost forever. But you’re not alone. Rival Grabbers and the fearsome **Glub Evolved**—a bio-mechanical creature engineered to consume garbage—patrol the dumps, fiercely guarding their territory. Only the fastest, smartest, and most daring will claim the top spot in this high-stakes scavenger hunt.
-
-Gear up, navigate the neon fog, and grab your fortune!
+<div align="center">
+  <img src="https://i.ibb.co/Qjk5tJ8Z/xerctvyb.png" alt="Garbage Grab Logo" width="300"/>
+  
+  # 🗑️ Garbage Grab
+  
+  **A fast-paced 3D multiplayer mini-game for the Gorbagana Blockchain**
+  
+  [![Game](https://img.shields.io/badge/Game-3D%20Multiplayer-blue?style=for-the-badge&logo=unity)](https://github.com/yourusername/garbagegrab_game)
+  [![Blockchain](https://img.shields.io/badge/Blockchain-Solana-purple?style=for-the-badge&logo=solana)](https://solana.com/)
+  [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+  [![Status](https://img.shields.io/badge/Status-Prototype-orange?style=for-the-badge)](https://github.com/yourusername/garbagegrab_game)
+  
+  *Built by [Ghxst](https://github.com/ghxst) for the Gorbagana Blockchain*
+</div>
 
 ---
 
-## Game Overview
+## 🎮 Game Overview
 
-**Garbage Grab** is a competitive 3D game set in a cyberpunk-inspired arena shrouded in fog, filled with junk piles and spike traps. Players pilot customizable mechs to collect valuable loot—**Gold Coins** (10 points), **Blue USB Sticks** (25 points), and **Silver Laptops** (50 points)—while competing against two AI opponents (TrashBot_1 and TrashBot_2) and evading the Glub Evolved monster. The goal is to achieve the highest score within a 5-minute timer, surviving hazards and outsmarting rivals.
+**Garbage Grab** is a competitive 3D game set in a cyberpunk-inspired arena where players pilot customizable mechs to collect valuable loot while competing against AI opponents and evading the fearsome **Glub Evolved** monster.
 
-### Key Features
+### 🎯 Objective
+- Collect the most points within a 5-minute timer
+- Survive hazards and outsmart rivals
+- Aim for the top of the leaderboard
 
-- **Player Control**:
-  - **Desktop**: Use `W`, `A`, `S`, `D` for tank-style movement (forward, backward, rotate) and `Space` to jump.
-  - **Mobile**: A virtual joystick enables fluid 360-degree movement, with the mech auto-orienting to the direction of movement.
-
-- **Characters**:
-  - **Player’s Mech**: A custom-skinned **Mech-D5Ww2Jdo42** with running and idle animations, equipped with physics colliders.
-  - **AI Opponents**: Two TrashBots that actively seek collectibles, creating dynamic competition.
-  - **Glub Evolved**: A roaming hazard that chases players within its detection radius, dealing 20 HP damage on collision with a screen shake effect.
-
-- **Arena**:
-  - A grid-based floor with moody fog for atmosphere, junk piles as static obstacles, and spike traps dealing 25 HP damage (with cooldown).
-
-- **Objective**:
-  - Collect the most points by running into loot, survive the 5-minute round or until health depletes, and aim for the top of the leaderboard.
-
-- **User Interface**:
-  - **HUD**: Displays health (top-left), timer (top-center), score (top-right), and leaderboard (bottom-right, showing real-time player and AI scores).
-  - **Screens**: Includes a loading screen with a glitchy "GARBAGE GRAB" title, a start screen with a "CLICK TO START" button, and a game over screen showing the final score and a "RESTART" button.
-  - **Audio**: A looping cyberpunk track, sound effects for collecting items, taking damage, and game events, with a mute/unmute toggle.
-  - **Visual Effects**: Bloom for neon glow, Vignette for focus, collection particles, and screen shake on damage.
+### 🏆 Scoring System
+- **Gold Coins** 💰 = 10 points
+- **Blue USB Sticks** 💾 = 25 points  
+- **Silver Laptops** 💻 = 50 points
 
 ---
 
-## Blockchain Integration
+## 🌟 Key Features
 
-**Garbage Grab** leverages the **Gorbagana Blockchain**, a Solana-based testnet with zero-MEV execution, instant finality, and Web2-like speed, to manage player scores securely and transparently using **Program Derived Addresses (PDAs)**. This integration showcases the chain’s ability to handle frequent, low-latency transactions for real-time gaming.
+### 🎮 Player Control
+- **Desktop**: WASD movement + Space to jump
+- **Mobile**: Virtual joystick with 360° movement
 
-### How It Works
+### 🤖 Characters
+- **Player Mech**: Custom-skinned Mech-D5Ww2Jdo42 with animations
+- **AI Opponents**: Two TrashBots actively seeking collectibles
+- **Glub Evolved**: Roaming hazard dealing 20 HP damage
 
-- **Program Derived Addresses (PDAs)**:
-  - PDAs are unique accounts generated by the game’s Solana program, derived from the program ID and seeds (e.g., the player’s public key and the string "score").
-  - They are deterministic, secure (no private keys), and controlled solely by the program, ensuring tamper-proof score management.
-  - When a player joins, their PDA is derived client-side using `PublicKey.findProgramAddress`. If new, the program initializes the account with a score of 0.
+### 🏟️ Arena
+- Grid-based floor with moody fog atmosphere
+- Junk piles as static obstacles
+- Spike traps dealing 25 HP damage (with cooldown)
 
-- **Score Updates**:
-  - Collecting an item (e.g., 10 points for a coin) triggers a transaction to the deployed score program, which updates the player’s PDA with the new score.
-  - The program, written in Rust (`lib.rs`), validates transactions and ensures scores stay within limits (e.g., max 1,000,000 points).
-
-- **Leaderboard**:
-  - The leaderboard fetches scores directly from PDA accounts on the Gorbagana Blockchain, updating in real-time to reflect rankings, ensuring transparency and fairness.
-
-- **Wallet Connection**:
-  - A "Connect Wallet" button in the UI (`ui.js`, rendered in `#walletPanel`) simulates integration with the Backpack wallet, updating the player’s name to "Ghxst.gor" on the leaderboard.
-  - Full wallet integration is planned for future releases to support $gGOR test token rewards.
-
-This setup demonstrates the Gorbagana Chain’s speed and efficiency, making it ideal for competitive, on-chain gaming.
+### 🎨 User Interface
+- **HUD**: Health, timer, score, and real-time leaderboard
+- **Screens**: Loading, start, and game over screens
+- **Audio**: Cyberpunk soundtrack with sound effects
+- **Visual Effects**: Bloom, vignette, particles, and screen shake
 
 ---
 
-NEXT STEPS IN DEVELOPMENT
+## ⛓️ Blockchain Integration
 
-Garbage Grab is a basic prototype built to showcase the Gorbagana Blockchain’s capabilities for fast, decentralized gaming. Developed under time constraints, it lays a strong foundation for future enhancements:Improved Visuals and Maps:Enhance 3D renderings for mechs, collectibles, and the Glub Evolved.
-Create larger, AI-generated, procedurally generated maps for dynamic, ever-evolving gameplay.
+**Garbage Grab** leverages the **Gorbagana Blockchain** - a Solana-based testnet with zero-MEV execution and instant finality - to manage player scores securely using **Program Derived Addresses (PDAs)**.
 
-Live On-Chain Leaderboard:Implement a persistent, global leaderboard hosted on a separate page, tracking top players with $gGOR token rewards.
+### 🔐 How It Works
 
-Easter Eggs:Add hidden treasure chests that, when found, send $gGOR tokens to the player’s wallet, increasing engagement.
+#### Program Derived Addresses (PDAs)
+- Unique accounts generated by the game's Solana program
+- Derived from program ID and seeds (player's public key + "score")
+- Deterministic, secure, and tamper-proof score management
 
-Multiplayer Enhancements: Develop real-time multiplayer, allowing direct competition between players on the Gorbagana testnet.
+#### Score Updates
+- Collecting items triggers blockchain transactions
+- Rust program (`lib.rs`) validates and updates scores
+- Real-time leaderboard fetching from PDA accounts
 
-NFT Integration:Introduce NFTs for mech suits and upgrades, enabling a marketplace for buying, selling, and trading assets, adding strategy and economy.
-
-Additional developments :New Game Modes: Team-based challenges or survival modes.
-Social Features: Share scores or invite friends via social media for competition points in social promotion.
-Expanded Collectibles: Add power-ups or rare items to diversify gameplay.
-
-
-## Technology Stack
-
-The game is built with a modern, buildless JavaScript setup:
-- **Rendering**: Three.js, React Three Fiber, and Drei for declarative 3D scene building.
-- **Physics**: React Three Rapier for collision detection and movement.
-- **State Management**: Zustand for managing score, health, timer, and game status.
-- **Audio**: Howler.js for cross-platform sound support.
-- **UI**: React for HUD, menus, and screens.
-- **Module Loading**: ESM modules with an importmap in `index.html`, loaded from esm.sh, eliminating build steps.
-- **Blockchain**: Solana-based Gorbagana Chain, with the score program deployed from the `garbagegrab-program` folder.
+#### Wallet Integration
+- "Connect Wallet" button simulates Backpack wallet integration
+- Updates player name to "Ghxst.gor" on leaderboard
+- Future releases will support $gGOR test token rewards
 
 ---
 
-## Setup and Installation
+## 🚀 Technology Stack
 
-To run **Garbage Grab** locally, follow these steps:
+<div align="center">
 
-### Prerequisites
+| Category | Technology |
+|----------|------------|
+| **🎨 Rendering** | Three.js, React Three Fiber, Drei |
+| **⚡ Physics** | React Three Rapier |
+| **📊 State Management** | Zustand |
+| **🎵 Audio** | Howler.js |
+| **🖥️ UI** | React |
+| **📦 Module Loading** | ESM modules with importmap |
+| **⛓️ Blockchain** | Solana-based Gorbagana Chain |
 
-- **Node.js** (v14+): [Download](https://nodejs.org/)
-- **npm** (v6+): Included with Node.js
-- **Git**: [Download](https://git-scm.com/)
-- **Solana CLI**: Optional for blockchain interaction (pre-installed in your environment)
-- **Backpack wallet: Download the Backpack Wallet extension which is a prerequisite from :https://chromewebstore.google.com/detail/backpack/aflkmfhebedbjioipglgcbcmnbpgliof?pli=1
- -Go to settings, select Gorbagana 
-- Select RPC connection 
-- Update your Backpack wallet with custom RPC - http://rpc.gorbagana.wtf
-- Get some tesnet tokens from: https://faucet.gorbagana.wtf/ 
+</div>
 
+---
 
-### Installation Steps
+## 🛠️ Setup and Installation
 
-1. **Clone the Repository**:
+### 📋 Prerequisites
+
+- **Node.js** (v14+) - [Download](https://nodejs.org/)
+- **npm** (v6+) - Included with Node.js
+- **Git** - [Download](https://git-scm.com/)
+- **Solana CLI** - Optional for blockchain interaction
+- **Backpack Wallet** - [Download Extension](https://chromewebstore.google.com/detail/backpack/aflkmfhebedbjioipglgcbcmnbpgliof?pli=1)
+
+### 🔧 Installation Steps
+
+1. **Clone the Repository**
    ```bash
-   git clone 
+   git clone https://github.com/yourusername/garbagegrab_game.git
+   cd garbagegrab_game
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   # Client-side dependencies
    cd garbagegrab
+   npm install
    
+   # Server-side dependencies
+   cd ../garbagegrab-program
+   npm install
+   ```
 
-Install Dependencies:In the garbagegrab folder (client-side):bash
+3. **Configure Backpack Wallet**
+   - Go to settings → Select Gorbagana
+   - Update RPC connection to: `http://rpc.gorbagana.wtf`
+   - Get testnet tokens from: [Gorbagana Faucet](https://faucet.gorbagana.wtf/)
 
-npm install
+4. **Run the Server**
+   ```bash
+   cd garbagegrab-program
+   node server.js
+   ```
 
-In the garbagegrab-program folder (server-side):bash
+5. **Run the Client**
+   ```bash
+   cd garbagegrab
+   npm start
+   ```
 
-cd ../garbagegrab-program
-npm install
+6. **Access the Game**
+   - Open your browser and navigate to `http://localhost:1234`
+   - Start playing! 🎮
 
-Run the Server:In the garbagegrab-program folder:bash
+---
 
-node server.js
+## 🎯 Background Story
 
-This starts the server that connects to the deployed score program on the Gorbagana testnet.
+> In a neon-drenched, dystopian future, humanity's relentless consumption has overwhelmed Earth, leading to the creation of **Garbage World**—a massive asteroid repurposed as a cosmic landfill for discarded tech and refuse. Amid the chaos, rare and valuable technologies lie buried in the heaps, waiting to be reclaimed.
+>
+> You are a **Garbage Grabber**, a fearless pilot commanding a cutting-edge mech suit, diving into this hazardous terrain to salvage high-value items before they're lost forever. But you're not alone. Rival Grabbers and the fearsome **Glub Evolved**—a bio-mechanical creature engineered to consume garbage—patrol the dumps, fiercely guarding their territory. Only the fastest, smartest, and most daring will claim the top spot in this high-stakes scavenger hunt.
+>
+> **Gear up, navigate the neon fog, and grab your fortune!** 🚀
 
-Run the Client:In the garbagegrab folder:bash
+---
 
-npm start
+## 🔮 Future Development
 
-This uses Parcel to serve the game locally.
+### 🎨 Visual Enhancements
+- [ ] Enhanced 3D renderings for mechs and collectibles
+- [ ] AI-generated, procedurally generated maps
+- [ ] Improved Glub Evolved animations
 
-Access the Game:Open your browser and navigate to http://localhost:1234 to play.
+### ⛓️ Blockchain Features
+- [ ] Live on-chain leaderboard with $gGOR rewards
+- [ ] Hidden treasure chests with token rewards
+- [ ] Full wallet integration
 
-**Acknowledgments
+### 🎮 Gameplay Improvements
+- [ ] Real-time multiplayer competition
+- [ ] NFT integration for mech suits and upgrades
+- [ ] Team-based challenges and survival modes
+- [ ] Social features and friend invitations
 
-Garbage Grab was built using the following technologies: Three.js, React Three Fiber, and Drei for 3D rendering and scene management.
-React Three Rapier for physics and collision detection.
-Zustand for state management.
-Howler.js for audio.
-React for UI components.
-Solana and Gorbagana Blockchain for on-chain score management.
+### 🏪 Economy
+- [ ] NFT marketplace for buying, selling, and trading assets
+- [ ] Power-ups and rare items
+- [ ] Social promotion rewards
 
-3D assets and gameplay libraries from Rosebud AI, with all assets (3D models, textures, audio) included in the repository (/assets folder).
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+### 🐛 Bug Reports
+If you find a bug, please create an issue with:
+- A clear description of the problem
+- Steps to reproduce the issue
+- Expected vs actual behavior
+- Screenshots if applicable
+
+### 💡 Feature Requests
+We love new ideas! Please create an issue with:
+- A clear description of the feature
+- Why this feature would be useful
+- Any mockups or examples
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **3D Assets**: Rosebud AI for all game assets (models, textures, audio)
+- **Technologies**: Three.js, React Three Fiber, Drei for 3D rendering
+- **Physics**: React Three Rapier for collision detection
+- **Audio**: Howler.js for cross-platform sound support
+- **Blockchain**: Solana and Gorbagana Blockchain for on-chain score management
+
+---
+
+<div align="center">
+  
+  **Made with ❤️ for the Gorbagana Blockchain community**
+  
+  [![GitHub stars](https://img.shields.io/github/stars/yourusername/garbagegrab_game?style=social)](https://github.com/yourusername/garbagegrab_game)
+  [![GitHub forks](https://img.shields.io/github/forks/yourusername/garbagegrab_game?style=social)](https://github.com/yourusername/garbagegrab_game)
+  [![GitHub issues](https://img.shields.io/github/issues/yourusername/garbagegrab_game)](https://github.com/yourusername/garbagegrab_game/issues)
+  
+</div>
