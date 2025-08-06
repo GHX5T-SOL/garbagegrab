@@ -10,7 +10,7 @@
   [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
   [![Status](https://img.shields.io/badge/Status-Prototype-orange?style=for-the-badge)](https://github.com/yourusername/garbagegrab_game)
   
-  *Built by [Ghxst](https://github.com/ghxst) for the Gorbagana Blockchain*
+  *Built by [Ghxst](https://x.com/0xGhxstXBT) for the Gorbagana Blockchain*
 </div>
 
 ---
